@@ -1,0 +1,81 @@
+CREATE TABLE Usuario (
+    ID_Usuario INTEGER PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Telefone VARCHAR(15),
+    Tipo_Usuario VARCHAR(20) NOT NULL,
+    Endereco VARCHAR(255)
+);
+
+CREATE TABLE Veiculo (
+    ID_Veiculo INTEGER PRIMARY KEY,
+    Tipo_Veiculo VARCHAR(50) NOT NULL,
+    Marca VARCHAR(50),
+    Capacidade INTEGER,
+    Status_Veiculo VARCHAR(20) NOT NULL,
+    Latitude FLOAT,
+    Longitude FLOAT
+);
+
+CREATE TABLE Estacao (
+    ID_Estacao INTEGER PRIMARY KEY,
+    Nome_Estacao VARCHAR(100) NOT NULL,
+    Endereco VARCHAR(255),
+    Capacidade_Bicicletas INTEGER,
+    Estacionamento_Seguro BOOLEAN,
+    Tipo_Estacao VARCHAR(50) NOT NULL,
+    Horario_Funcionamento TIME,
+    Latitude FLOAT,
+    Longitude FLOAT
+);
+
+CREATE TABLE Rota (
+    ID_Rota INTEGER PRIMARY KEY,
+    Nome_Rota VARCHAR(100) NOT NULL,
+    Tipo_Rota VARCHAR(20) NOT NULL,
+    Descricao_Rota TEXT,
+    Status_Rota VARCHAR(20),
+    ID_Veiculo INTEGER,
+    FOREIGN KEY (ID_Veiculo) REFERENCES Veiculo(ID_Veiculo)
+);
+
+CREATE TABLE Horario_Onibus (
+    ID_Horario INTEGER PRIMARY KEY,
+    Horario_Partida TIME NOT NULL,
+    Horario_Chegada TIME NOT NULL,
+    ID_Rota INTEGER,
+    FOREIGN KEY (ID_Rota) REFERENCES Rota(ID_Rota)
+);
+
+CREATE TABLE Viagem (
+    ID_Viagem INTEGER PRIMARY KEY,
+    Data_Viagem DATE NOT NULL,
+    Hora_Inicio TIME,
+    Hora_Fim TIME,
+    ID_Usuario INTEGER,
+    ID_Veiculo INTEGER,
+    Status_Viagem VARCHAR(20) NOT NULL,
+    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario),
+    FOREIGN KEY (ID_Veiculo) REFERENCES Veiculo(ID_Veiculo)
+);
+
+CREATE TABLE Parada (
+    ID_Parada INTEGER PRIMARY KEY,
+    Nome_Parada VARCHAR(100) NOT NULL,
+    ID_Rota INTEGER,
+    Latitude FLOAT,
+    Longitude FLOAT,
+    FOREIGN KEY (ID_Rota) REFERENCES Rota(ID_Rota)
+);
+
+CREATE TABLE Reserva_Bicicleta (
+    ID_Reserva INTEGER PRIMARY KEY,
+    Data_Reserva DATE NOT NULL,
+    Hora_Inicio TIME,
+    Hora_Fim TIME,
+    ID_Usuario INTEGER,
+    ID_Veiculo INTEGER,
+    Status_Reserva VARCHAR(20) NOT NULL,
+    FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario),
+    FOREIGN KEY (ID_Veiculo) REFERENCES Veiculo(ID_Veiculo)
+);
