@@ -26,13 +26,6 @@ Mobilidade sustentável envolve o uso de métodos de transporte que respeitam o 
 - **Modelos de predição** para otimizar o transporte público e privado nas cidades.
 - **Recomendações de políticas públicas** para aumentar a sustentabilidade na mobilidade.
 
-## ⚙️ Tecnologias Utilizadas
-
-- **Python** para análise e visualização de dados.
-- **Pandas** para manipulação de dados.
-- **Matplotlib** e **Seaborn** para visualização gráfica.
-- **Jupyter Notebooks** para desenvolvimento interativo.
-- **APIs de transporte urbano** para coletar dados de mobilidade.
 
 ## 📥 Como Rodar o Projeto
 
